@@ -1,0 +1,48 @@
+:host {
+    flex: 1 2 50%;
+    padding: 15px;
+}
+
+.ref-item {
+    display: flex;
+    flex-flow: column;
+    margin-bottom: 30px;
+
+    .ref-content {
+        flex: 1 2 40%;
+        display: inherit;
+        flex-flow: row wrap;
+        justify-content: space-between;
+    
+        .ref-image {
+            min-width: 220px;
+            max-width: 250px;
+            
+            img {
+                width: 100%;
+            }
+        }
+
+        .ref-text {
+            flex: 1 2 40%;
+            display: inherit;
+            flex-flow: column;
+
+            strong {
+                color: crimson;
+            }
+        }
+    }
+
+    .ref-actions {
+        flex: 1 1 100%;
+        display: inherit;
+        justify-content: flex-end;
+    }
+}
+
+@media (min-width: 480px) {
+    .ref-image {
+        margin-right: 20px;
+    }
+}
