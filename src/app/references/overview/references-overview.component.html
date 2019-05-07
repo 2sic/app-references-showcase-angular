@@ -1,0 +1,11 @@
+
+<div class="clearfix categories-container">
+    <categories-list></categories-list>
+</div>
+
+<div class="references-container">
+    <ng-container *ngFor="let reference of references | async">
+        <references-overview-item [reference]="reference"></references-overview-item>
+        <references-overview-item [reference]="reference"></references-overview-item>
+    </ng-container>
+</div>
