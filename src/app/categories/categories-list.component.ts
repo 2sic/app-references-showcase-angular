@@ -1,24 +1,28 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
-import { Context, Data, DnnAppComponent } from '@2sic.com/dnn-sxc-angular';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+
+import { Category } from '../data/categories.interfaces';
+import { DataService } from '../data/data.service';
 
 @Component({
     selector: 'categories-list',
-    template: `List of all categories:<br> <div *ngFor="let category of categories">{{category.name}}</div>`
+    templateUrl: './categories-list.component.html',
+    styleUrls: ['categories-list.component.scss'],
 })
 export class CategoriesListComponent implements OnInit {
-    categories: Category[];
+
+    public categories: Observable<Category[]>;
 
     constructor(
-        private data: Data,
+        private data: DataService,
     ) {
     }
 
     ngOnInit() {
-        this.data.content<Category>('Category').get()
-            .subscribe(categories => this.categories = categories);
+        this.categories = this.data.categoryByPriority();
     }
-}
 
-class Category {
-    name: string;
+    select(category: Category) {
+        this.data.setSelectedCategory(category);
+    }
 }

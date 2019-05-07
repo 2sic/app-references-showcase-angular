@@ -23,19 +23,6 @@ export class DataService {
         this.references.subscribe( (refs: Reference[]) => console.log({refs}) );
     }
 
-    public referencesByCategory(): Observable<Reference[]> {
-
-        if (!this.selectedCategory) return this.references;
-
-        const filterCategory = 
-            (refs: Reference[]) =>
-                refs.filter( (ref: Reference) => 
-                    !!ref.Categories.find((cat: Category) => cat.Id === this.selectedCategory.Id) 
-                );
-
-        return this.references.pipe(map( (r: Reference[]) => filterCategory(r) ));
-    }
-
     public categoryByPriority(): Observable<Category[]> {
 
         const sortPriority = 
@@ -43,7 +30,6 @@ export class DataService {
                 cats.sort( 
                     (a: Category, b: Category) => +(a.Priority > b.Priority) || +(a.Priority === b.Priority) - 1 
                 );
-
 
         return this.categories.pipe(map( (c: Category[]) => sortPriority(c) ));
     }

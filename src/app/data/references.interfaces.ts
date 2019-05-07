@@ -5,5 +5,5 @@ export interface Reference {
     Title: string;
     Description: string;
     PreviewImage: string;
-    Categories: Array<Category>;
+    Category: Array<Category>;
 }
