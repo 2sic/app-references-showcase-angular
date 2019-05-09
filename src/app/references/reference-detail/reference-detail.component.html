@@ -1,0 +1,21 @@
+
+<h1>{{data?.selectedReference?.Title}}</h1>
+
+<span [innerHTML]="data?.selectedReference?.Description"></span>
+
+<p>{{data?.selectedReference | json}}</p>
+
+<table class="table table-striped">
+    <table>
+        <tr>
+            <td>Services</td>
+            <td>{{data?.selectedReference?.Services}}</td>
+        </tr>
+        <tr>
+            <td>Links</td>
+            <td [innerHTML]="data?.selectedReference?.Links"></td>
+        </tr>
+    </table>
+</table>
+
+<button class="btn btn-outline-dark" (click)="back()">back to list</button>
