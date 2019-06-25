@@ -9,16 +9,8 @@ import { AppComponent } from './app.component';
 import { addBootstrapCSS } from './dev/add-bootstrap';
 import { DnnDevSettings } from './dev/dnn-dev-settings';
 
-import { CategoriesListComponent } from './categories/categories-list.component';
-import { ReferenceOverviewComponent } from './references/overview/references-overview.component';
-import { ReferenceOverviewItemComponent } from './references/overview-item/references-overview-item.component';
-import { ReferenceDetailComponent } from './references/reference-detail/reference-detail.component';
-import { ReferenceImageDirective } from './references/references-image.directive';
-import { DataService } from './data/data.service';
-
 const providers: Provider[] = [
   DnnInterceptor,
-  DataService
 ];
 
 if (!environment.production) {
@@ -29,18 +21,13 @@ if (!environment.production) {
 @NgModule({
   declarations: [
     AppComponent,
-    CategoriesListComponent,
-    ReferenceOverviewComponent,
-    ReferenceOverviewItemComponent,
-    ReferenceImageDirective,
-    ReferenceDetailComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: providers,
+  providers,
   bootstrap: [AppComponent]
 })
 export class AppModule { }

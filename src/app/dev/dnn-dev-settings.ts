@@ -6,7 +6,7 @@ set.ignoreMissingServicesFramework = true;
 
 // The base path to your DNN environment's API
 // In most of the cases, this is http://[domain]/DesktopModules/2sxc/API/
-set.path = "http://app-dev.2sxc.org/showcase-references-angular/DesktopModules/2sxc/API/";
+set.path = 'http://app-dev.2sxc.org/showcase-references-angular/DesktopModules/2sxc/API/';
 
 // The module and tab id to get data from
 set.moduleId = 3952;
