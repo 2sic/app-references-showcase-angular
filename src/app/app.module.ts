@@ -8,6 +8,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { addBootstrapCSS } from './dev/add-bootstrap';
 import { DnnDevSettings } from './dev/dnn-dev-settings';
+import { CategoriesComponent } from './categories/categories.component';
+import { CategoryButtonComponent } from './categories/category-button/category-button.component';
 
 const providers: Provider[] = [
   DnnInterceptor,
@@ -21,6 +23,8 @@ if (!environment.production) {
 @NgModule({
   declarations: [
     AppComponent,
+    CategoriesComponent,
+    CategoryButtonComponent,
   ],
   imports: [
     BrowserModule,

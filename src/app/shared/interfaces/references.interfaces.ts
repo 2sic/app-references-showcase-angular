@@ -1,4 +1,4 @@
-import { Category } from './categories.interfaces';
+import { Category } from './category.interfaces';
 
 export interface Reference {
     Id: number;

@@ -1,0 +1,10 @@
+
+<button
+  type="button"
+  class="btn btn-outline-secondary"
+  [routerLink]="[routerParam, category?.UrlPath]"
+  [ngClass]="{'active': isSelected}"
+  (click)="select()"
+>
+  {{category.Name}}
+</button>
