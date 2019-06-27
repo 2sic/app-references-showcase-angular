@@ -29,6 +29,12 @@ export class ReferenceDetailsComponent {
       takeWhile(() => !this.reference),
       map(([params, references]) => references.find(ref => ref.UrlPath === params.reference) || null),
       tap(reference => this.reference = reference),
+      // TODO: How to get the Images?
+      tap(() => {
+        if (this.reference && !this.reference.Images) {
+          this.reference.Images = [this.reference.PreviewImage];
+        }
+      }),
     ).subscribe();
 
   }
