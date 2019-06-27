@@ -9,13 +9,11 @@ import { Category } from 'src/app/shared/interfaces/category.interfaces';
 export class CategoryButtonComponent {
 
   @Input() category: Category;
-  @Input() isSelected: boolean;
-
   @Output() selectCategory = new EventEmitter<Category>();
 
   routerParam = '/category';
 
-  select() {
+  select(): void {
     this.selectCategory.emit(this.category);
   }
 }
