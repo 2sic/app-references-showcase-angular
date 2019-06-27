@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { combineLatest, Observable } from 'rxjs';
-import { first, map, takeUntil, tap } from 'rxjs/operators';
+import { map, takeUntil, tap } from 'rxjs/operators';
 import { CategoryFilterService } from '../core/services/catergory-filter/category-filter.service';
 import { SxcDataService } from '../core/services/sxc-data/sxc-data.service';
 import { Category } from '../shared/interfaces/category.interfaces';
@@ -23,7 +23,7 @@ export class CategoriesComponent {
     route: ActivatedRoute,
   ) {
 
-    // add select all option
+    // add 'select all' option
     this.categories$ = sxcData.categories$.pipe(
       map(categories => [this.allCategory, ...categories]),
     );
@@ -34,9 +34,9 @@ export class CategoriesComponent {
       this.categories$,
     ).pipe(
       takeUntil(catFilter.selectedCategory$),
-      first(),
       map(([params, categories]) => categories.find(cat => params.category === cat.UrlPath) || this.allCategory),
       tap(select => catFilter.updateSelectedCategory(select)),
     ).subscribe();
+
   }
 }
