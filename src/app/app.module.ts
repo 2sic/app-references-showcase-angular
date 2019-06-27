@@ -5,7 +5,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { environment } from './../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { addBootstrapCSS } from './dev/add-bootstrap';
 import { DnnDevSettings } from './dev/dnn-dev-settings';
 import { CategoriesComponent } from './overview/categories/categories.component';
 import { CategoryButtonComponent } from './overview/categories/category-button/category-button.component';
@@ -20,7 +19,6 @@ const providers: Provider[] = [
 
 if (!environment.production) {
   providers.push({ provide: RuntimeSettings, useValue: DnnDevSettings });
-  addBootstrapCSS();
 }
 
 @NgModule({
