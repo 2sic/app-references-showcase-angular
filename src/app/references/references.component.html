@@ -1,0 +1,12 @@
+
+<div class="row">
+
+  <ng-container *ngFor="let reference of references$ | async">
+
+    <div class="col-sm-12 col-md-6">
+      <app-reference-item [reference]="reference"></app-reference-item>
+    </div>
+
+  </ng-container>
+
+</div>
