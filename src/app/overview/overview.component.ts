@@ -5,4 +5,8 @@ import { Component } from '@angular/core';
   templateUrl: './overview.component.html',
   styleUrls: ['./overview.component.scss']
 })
-export class OverviewComponent { }
+export class OverviewComponent {
+
+  title = 'showcase-references-angular';
+
+}
