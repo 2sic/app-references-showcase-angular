@@ -9,4 +9,10 @@
 
   </ng-container>
 
+  <ng-container *ngIf="(references$ | async)?.length === 0">
+    <div class="col-sm-12 col-md-6">
+      <p>Keine Referencen für diese Auswahl</p>
+    </div>
+  </ng-container>
+
 </div>
