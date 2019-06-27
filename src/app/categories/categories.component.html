@@ -1,19 +1,9 @@
 
 <div class="category-buttons">
 
-  <app-category-button
-    (selectCategory)="selectCategory($event)"
-    [isSelected]="(selectedCategory$ | async)?.Id === null"
-    [category]="allCategory">
-  </app-category-button>
-
   <ng-container *ngFor="let category of categories$ | async">
 
-    <app-category-button
-      (selectCategory)="selectCategory($event)"
-      [isSelected]="(selectedCategory$ | async)?.Id === category.Id"
-      [category]="category">
-    </app-category-button>
+    <app-category-button [category]="category"></app-category-button>
 
   </ng-container>
 

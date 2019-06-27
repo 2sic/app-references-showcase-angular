@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { combineLatest, Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { first, map, takeUntil, tap } from 'rxjs/operators';
 import { CategoryFilterService } from '../core/services/catergory-filter/category-filter.service';
 import { SxcDataService } from '../core/services/sxc-data/sxc-data.service';
 import { Category } from '../shared/interfaces/category.interfaces';
@@ -11,36 +11,32 @@ import { Category } from '../shared/interfaces/category.interfaces';
   templateUrl: './categories.component.html',
   styleUrls: ['./categories.component.scss']
 })
-export class CategoriesComponent implements OnInit {
+export class CategoriesComponent {
 
   categories$: Observable<Category[]>;
-  selectedCategory$: Observable<Category>;
 
-  allCategory: Category = { Id: null, Name: 'All', UrlPath: 'all', Priority: 0 };
+  private allCategory: Category = { Id: null, Name: 'All', UrlPath: 'all', Priority: 0 };
 
   constructor(
-    private route: ActivatedRoute,
-    private sxcData: SxcDataService,
-    private catFilter: CategoryFilterService,
-  ) { }
+    sxcData: SxcDataService,
+    catFilter: CategoryFilterService,
+    route: ActivatedRoute,
+  ) {
 
-  ngOnInit() {
-    this.categories$ = this.sxcData.categories$;
-    this.selectedCategory$ = this.catFilter.selectedCategory$;
-
-    this.selectedCategory$ = combineLatest(
-      this.categories$,
-      this.route.params,
-    ).pipe(
-      map(([categories, params]) => {
-        return categories.find(cat => cat.UrlPath === params.category) || this.allCategory;
-      }),
-      tap(category => this.selectCategory(category)),
+    // add select all option
+    this.categories$ = sxcData.categories$.pipe(
+      map(categories => [this.allCategory, ...categories]),
     );
-  }
 
-  selectCategory(category: Category) {
-    this.catFilter.updateSelectedCategory(category);
+    // check url parameters for selected category
+    combineLatest(
+      route.params,
+      this.categories$,
+    ).pipe(
+      takeUntil(catFilter.selectedCategory$),
+      first(),
+      map(([params, categories]) => categories.find(cat => params.category === cat.UrlPath) || this.allCategory),
+      tap(select => catFilter.updateSelectedCategory(select)),
+    ).subscribe();
   }
-
 }
