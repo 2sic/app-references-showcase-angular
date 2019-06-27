@@ -1,0 +1,41 @@
+<div class="col-12 col-sm-6">
+
+  <ng-container *ngIf="!!reference">
+    <h1>{{reference?.Title}}</h1>
+
+    <ng-container *ngIf="!!reference?.Images">
+      <!--TODO: Images? slider?-->
+    </ng-container>
+
+    <ng-container *ngIf="!!reference?.Description">
+      <span [innerHTML]="reference?.Description"></span>
+    </ng-container>
+
+
+    <table class="table table-striped">
+      <tbody>
+
+        <tr *ngIf="!!reference?.Services">
+          <th scope="row">Services</th>
+          <td>{{reference?.Services}}</td>
+        </tr>
+
+        <tr *ngIf="!!reference?.Links">
+          <th scope="row">Links</th>
+          <td>
+            <span [innerHTML]="reference?.Links"></span>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+
+  </ng-container>
+
+  <ng-container *ngIf="!reference">
+    <p>Keine Reference für dieses Auswahl gefunden</p>
+  </ng-container>
+
+  <button class="btn btn-primary" (click)="navigateBack()">back to list</button>
+
+</div>
