@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Category } from 'src/app/shared/interfaces/category.interfaces';
+import { CategoryFilterService } from 'src/app/core/services/catergory-filter/category-filter.service';
 
 @Component({
   selector: 'app-category-button',
@@ -9,11 +10,13 @@ import { Category } from 'src/app/shared/interfaces/category.interfaces';
 export class CategoryButtonComponent {
 
   @Input() category: Category;
-  @Output() selectCategory = new EventEmitter<Category>();
-
   routerParam = '/category';
 
+  constructor(
+    private catFilter: CategoryFilterService,
+  ) { }
+
   select(): void {
-    this.selectCategory.emit(this.category);
+    this.catFilter.updateSelectedCategory(this.category);
   }
 }
