@@ -9,12 +9,12 @@
     <div class="reference-text">
       <span><strong>{{reference.Title}}</strong></span>
       <br>
-      <span [innerHTML]="reference.Description"></span>
+      <span [innerHTML]="(reference.Description | slice:0:40) + (reference.Description.length > 40 ? '...' : '')"></span>
     </div>
   </div>
 
 </div>
 
 <a [routerLink]="['/reference', reference.UrlPath]" class="btn btn-primary float-right">
-  details
+  Details
 </a>
