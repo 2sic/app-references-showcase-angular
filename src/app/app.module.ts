@@ -5,15 +5,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { environment } from './../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CategoriesComponent } from './categories/categories.component';
-import { CategoryButtonComponent } from './categories/category-button/category-button.component';
 import { addBootstrapCSS } from './dev/add-bootstrap';
 import { DnnDevSettings } from './dev/dnn-dev-settings';
+import { CategoriesComponent } from './overview/categories/categories.component';
+import { CategoryButtonComponent } from './overview/categories/category-button/category-button.component';
 import { OverviewComponent } from './overview/overview.component';
+import { ReferenceItemComponent } from './overview/references/reference-item/reference-item.component';
+import { ReferencesComponent } from './overview/references/references.component';
 import { ReferenceDetailsComponent } from './reference-details/reference-details.component';
-import { ReferenceItemComponent } from './references/reference-item/reference-item.component';
-import { ReferencesComponent } from './references/references.component';
-
 
 const providers: Provider[] = [
   DnnInterceptor,

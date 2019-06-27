@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { combineLatest, Observable } from 'rxjs';
 import { map, takeUntil, tap } from 'rxjs/operators';
-import { CategoryFilterService } from '../core/services/catergory-filter/category-filter.service';
-import { SxcDataService } from '../core/services/sxc-data/sxc-data.service';
-import { Category } from '../shared/interfaces/category.interfaces';
+import { CategoryFilterService } from '../../core/services/catergory-filter/category-filter.service';
+import { SxcDataService } from '../../core/services/sxc-data/sxc-data.service';
+import { Category } from '../../shared/interfaces/category.interfaces';
 
 @Component({
   selector: 'app-categories',

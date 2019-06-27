@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CategoryFilterService } from '../core/services/catergory-filter/category-filter.service';
-import { Reference } from '../shared/interfaces/references.interfaces';
+import { CategoryFilterService } from '../../core/services/catergory-filter/category-filter.service';
+import { Reference } from '../../shared/interfaces/references.interfaces';
 
 @Component({
   selector: 'app-references',
