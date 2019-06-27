@@ -5,5 +5,9 @@ export interface Reference {
     Title: string;
     Description: string;
     PreviewImage: string;
+    UrlPath: string;
     Category: Array<Category>;
+    Services: string;
+    Links: string;
+    Images: string;
 }

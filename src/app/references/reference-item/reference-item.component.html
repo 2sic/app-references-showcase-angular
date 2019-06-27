@@ -1,0 +1,21 @@
+
+<div class="row">
+
+  <div class="col-12 col-sm-6">
+    <!--TODO: replace placeholder with real image & handle no image-->
+    <img src="https://dummyimage.com/600x400/000/fff" class="img-fluid">
+  </div>
+
+  <div class="col-12 col-sm-6">
+    <div class="reference-text">
+      <span><strong>{{reference.Title}}</strong></span>
+      <br>
+      <span [innerHTML]="reference.Description"></span>
+    </div>
+  </div>
+
+</div>
+
+<a [routerLink]="['/reference', reference.UrlPath]" class="btn btn-primary float-right">
+  details
+</a>
