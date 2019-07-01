@@ -8,6 +8,7 @@ import { Reference } from 'src/app/shared/interfaces/references.interfaces';
 })
 export class ReferenceItemComponent {
 
+  hasImgError = false;
   cropString = '?w=496&h=370&mode=crop&scale=both';
 
   @Input() reference: Reference;

@@ -2,7 +2,15 @@
 <div class="row">
 
   <div class="col-12 col-sm-6">
-    <img [src]="reference.PreviewImage + cropString" class="img-fluid">
+
+    <ng-container *ngIf="!!reference.PreviewImage && !hasImgError">
+      <img [src]="reference.PreviewImage + cropString" (error)="hasImgError = true" class="img-fluid">
+    </ng-container>
+
+    <ng-container *ngIf="!reference.PreviewImage || hasImgError">
+      <div class="placeholder"></div>
+    </ng-container>
+
   </div>
 
   <div class="col-12 col-sm-6">
@@ -15,7 +23,7 @@
 
 </div>
 
-<a [routerLink]="['/reference', reference.UrlPath]" class="mb-5 btn btn-primary float-right m-n35">
+<a [routerLink]="['/reference', reference.UrlPath]" class="mb-5 btn btn-primary float-right">
   Details
 </a>
 
