@@ -3,14 +3,14 @@
 
   <ng-container *ngFor="let reference of references$ | async">
 
-    <div class="col-sm-12 col-md-6">
+    <div class="col-sm-12 col-lg-6">
       <app-reference-item [reference]="reference"></app-reference-item>
     </div>
 
   </ng-container>
 
   <ng-container *ngIf="(references$ | async)?.length === 0">
-    <div class="col-sm-12 col-md-6">
+    <div class="col-sm-12 col-lg-6">
       <p>Keine Referencen für diese Auswahl</p>
     </div>
   </ng-container>
