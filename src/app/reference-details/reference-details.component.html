@@ -1,17 +1,43 @@
-<div class="col-12 col-sm-6">
+
+<div class="row">
+
+  <ng-container *ngIf="(images$ | async)?.length > 0">
+    <div class="col-sm-12 col-md-6 order-2 order-sm-2 order-md-1">
+
+      <ng-container *ngIf="!!reference?.Description">
+        <span [innerHTML]="reference?.Description"></span>
+      </ng-container>
+
+      <table class="table table-striped">
+        <tbody>
+
+          <tr *ngIf="!!reference?.Services">
+            <th scope="row">Services</th>
+            <td>{{reference?.Services}}</td>
+          </tr>
+
+          <tr *ngIf="!!reference?.Links">
+            <th scope="row">Links</th>
+            <td>
+              <span [innerHTML]="reference?.Links"></span>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+
+    </div>
+  </ng-container>
 
   <ng-container *ngIf="!!reference">
-    <h1>{{reference?.Title}}</h1>
-
-    <ng-container *ngIf="!!reference.Images && reference.Images.length > 0">
-
+    <div class="col-sm-12 col-md-6 order-1 order-sm-1 order-md-2">
       <div id="carouselControls" class="carousel slide" data-ride="carousel">
 
         <div class="carousel-inner">
 
-          <ng-container *ngFor="let img of reference.Images; first as first">
+          <ng-container *ngFor="let img of images$ | async; first as first">
             <div class="carousel-item" [ngClass]="{'active': first}">
-              <img [src]="img" class="d-block w-100">
+              <img [src]="img.Url" class="d-block w-100">
             </div>
           </ng-container>
 
@@ -28,38 +54,13 @@
         </a>
 
       </div>
-
-
-    </ng-container>
-
-    <ng-container *ngIf="!!reference?.Description">
-      <span [innerHTML]="reference?.Description"></span>
-    </ng-container>
-
-    <table class="table table-striped">
-      <tbody>
-
-        <tr *ngIf="!!reference?.Services">
-          <th scope="row">Services</th>
-          <td>{{reference?.Services}}</td>
-        </tr>
-
-        <tr *ngIf="!!reference?.Links">
-          <th scope="row">Links</th>
-          <td>
-            <span [innerHTML]="reference?.Links"></span>
-          </td>
-        </tr>
-
-      </tbody>
-    </table>
-
+    </div>
   </ng-container>
 
   <ng-container *ngIf="!reference">
     <p>Keine Reference für dieses Auswahl gefunden</p>
   </ng-container>
 
-  <button class="btn btn-primary" (click)="navigateBack()">Back to list</button>
-
 </div>
+
+<button class="btn btn-primary" (click)="navigateBack()">Back to list</button>

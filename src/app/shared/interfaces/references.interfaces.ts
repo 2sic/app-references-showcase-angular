@@ -9,5 +9,4 @@ export interface Reference {
     Category: Array<Category>;
     Services: string;
     Links: string;
-    Images: string[];
 }

@@ -1,10 +1,11 @@
 import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { combineLatest } from 'rxjs';
+import { combineLatest, Observable } from 'rxjs';
 import { map, takeWhile, tap } from 'rxjs/operators';
 import { SxcDataService } from '../core/services/sxc-data/sxc-data.service';
 import { Reference } from '../shared/interfaces/references.interfaces';
+import { Image } from '../shared/interfaces/image.interface';
 
 @Component({
   selector: 'app-reference-details',
@@ -14,6 +15,7 @@ import { Reference } from '../shared/interfaces/references.interfaces';
 export class ReferenceDetailsComponent {
 
   reference: Reference;
+  images$: Observable<Image[]>;
 
   constructor(
     route: ActivatedRoute,
@@ -28,15 +30,11 @@ export class ReferenceDetailsComponent {
     ).pipe(
       takeWhile(() => !this.reference),
       map(([params, references]) => references.find(ref => ref.UrlPath === params.reference) || null),
+      tap(reference => this.images$ = sxcData.getImagesByReferenceId(reference.Id)),
       tap(reference => this.reference = reference),
-      // TODO: How to get the Images?
-      tap(() => {
-        if (this.reference && !this.reference.Images) {
-          this.reference.Images = [this.reference.PreviewImage];
-        }
-      }),
     ).subscribe();
 
+    this.images$.subscribe(img => console.log({img}));
   }
 
   navigateBack() {
