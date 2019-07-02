@@ -14,6 +14,10 @@ import { Image } from '../shared/interfaces/image.interface';
 })
 export class ReferenceDetailsComponent {
 
+  servicesLabel: string;
+  linksLabel: string;
+  btnBack: string;
+
   reference: Reference;
   images$: Observable<Image[]>;
 
@@ -22,6 +26,12 @@ export class ReferenceDetailsComponent {
     sxcData: SxcDataService,
     private location: Location,
   ) {
+
+    sxcData.resources$.pipe(
+      tap(resources => this.servicesLabel = resources.ServicesLabel),
+      tap(resources => this.linksLabel = resources.LinksLabel),
+      tap(resources => this.btnBack = resources.BackBtnLabel),
+    ).subscribe();
 
     // get reference via route parameter
     combineLatest(
@@ -33,8 +43,6 @@ export class ReferenceDetailsComponent {
       tap(reference => this.images$ = sxcData.getImagesByReferenceId(reference.Id)),
       tap(reference => this.reference = reference),
     ).subscribe();
-
-    this.images$.subscribe(img => console.log({img}));
   }
 
   navigateBack() {

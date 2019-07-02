@@ -23,6 +23,10 @@ export class CategoriesComponent {
     route: ActivatedRoute,
   ) {
 
+    sxcData.resources$.pipe(
+      tap(resources => this.allCategory.Name = resources.AllCategoriesBtnLabel),
+    ).subscribe();
+
     // add 'select all' option
     this.categories$ = sxcData.categories$.pipe(
       map(categories => [this.allCategory, ...categories]),
