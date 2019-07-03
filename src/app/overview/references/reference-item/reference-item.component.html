@@ -4,7 +4,7 @@
   <div class="col-12 col-sm-6">
 
     <ng-container *ngIf="!!reference.PreviewImage && !hasImgError">
-      <img [src]="reference.PreviewImage + cropString" (error)="hasImgError = true" class="img-fluid">
+      <img [src]="reference.PreviewImage + cropImgString" (error)="hasImgError = true" class="img-fluid">
     </ng-container>
 
     <ng-container *ngIf="!reference.PreviewImage || hasImgError">
@@ -17,7 +17,9 @@
     <div class="reference-text">
       <span><strong>{{reference.Title}}</strong></span>
       <br>
-      <span [innerHTML]="(reference.Description | slice:0:40) + (reference.Description.length > 40 ? '...' : '')"></span>
+      <span>
+        {{ reference.Description }}
+      </span>
     </div>
   </div>
 
