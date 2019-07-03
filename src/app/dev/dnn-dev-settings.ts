@@ -9,8 +9,8 @@ set.ignoreMissingServicesFramework = true;
 set.path = 'http://app-dev.2sxc.org/showcase-references-angular/DesktopModules/2sxc/API/';
 
 // The module and tab id to get data from
-set.moduleId = 3952;
-set.tabId = 2018;
+set.moduleId = 4520;
+set.tabId = 2129;
 
 // In most of the cases, you won't need to set this as it's the same as the module id
 // set.contentBlockId = 0;

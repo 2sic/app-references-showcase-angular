@@ -12,7 +12,9 @@ export class AppComponent extends DnnAppComponent {
     el: ElementRef,
     context: Context,
   ) {
-      super(el, context);
+    super(el, context);
+
+    // TODO: Add Sxc-Toolbars
   }
 
 }
