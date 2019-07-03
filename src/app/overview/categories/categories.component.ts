@@ -27,9 +27,10 @@ export class CategoriesComponent {
       tap(resources => this.allCategory.Name = resources.AllCategoriesBtnLabel),
     ).subscribe();
 
-    // add 'select all' option
+    // add 'select all' option and sort by priority
     this.categories$ = sxcData.categories$.pipe(
       map(categories => [this.allCategory, ...categories]),
+      map(categories => categories.sort((a, b) => +(a.Priority > b.Priority) || +(a.Priority === b.Priority) - 1 ) ),
     );
 
     // check url parameters for selected category
