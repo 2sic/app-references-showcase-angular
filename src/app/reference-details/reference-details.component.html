@@ -1,7 +1,7 @@
 
 <div class="row">
 
-  <ng-container *ngIf="(images$ | async)?.length > 0">
+  <ng-container *ngIf="!!reference">
     <div class="col-sm-12 col-md-6 order-2 order-sm-2 order-md-1">
 
       <ng-container *ngIf="!!reference?.Description">
@@ -29,7 +29,7 @@
     </div>
   </ng-container>
 
-  <ng-container *ngIf="!!reference">
+  <ng-container *ngIf="(images$ | async)?.length > 0">
     <div class="col-sm-12 col-md-6 order-1 order-sm-1 order-md-2">
       <div id="carouselControls" class="carousel slide" data-ride="carousel">
 
