@@ -1,11 +1,10 @@
-import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { combineLatest, Observable } from 'rxjs';
 import { map, takeWhile, tap } from 'rxjs/operators';
 import { SxcDataService } from '../core/services/sxc-data/sxc-data.service';
-import { Reference } from '../shared/interfaces/references.interfaces';
 import { Image } from '../shared/interfaces/image.interface';
+import { Reference } from '../shared/interfaces/references.interfaces';
 
 @Component({
   selector: 'app-reference-details',
@@ -24,7 +23,6 @@ export class ReferenceDetailsComponent {
   constructor(
     route: ActivatedRoute,
     sxcData: SxcDataService,
-    private location: Location,
   ) {
 
     sxcData.resources$.pipe(
@@ -43,9 +41,5 @@ export class ReferenceDetailsComponent {
       tap(reference => this.images$ = sxcData.getImagesByReferenceId(reference.Id)),
       tap(reference => this.reference = reference),
     ).subscribe();
-  }
-
-  navigateBack() {
-    this.location.back();
   }
 }
