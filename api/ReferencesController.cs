@@ -6,12 +6,15 @@ using System.Linq;
 
 public class ReferencesController : SxcApiController
 {
-	[HttpGet]
+  [HttpGet]
+  [AllowAnonymous]
 	[DnnModuleAuthorize(AccessLevel = SecurityAccessLevel.Anonymous)]
-	public object GetImages(int entityId)
-	{
-		var reference = AsDynamic(App.Data["Reference"].List[entityId]);
-        return AsAdam(reference, "Images").Files;
-	}
+  public dynamic GetImages(int entityId)
+  {
+    var reference = App.Data["Reference"].List
+      .Where(r => r.EntityId == entityId)
+      .FirstOrDefault();
 
+    return AsAdam(reference, "Images").Files;
+  }
 }
