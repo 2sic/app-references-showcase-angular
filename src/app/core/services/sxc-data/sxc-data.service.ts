@@ -31,24 +31,6 @@ export class SxcDataService {
     getImagesByReferenceId(referenceId: number): Observable<Image[]> {
 
       const params = new HttpParams().set('entityId', `${referenceId}`);
-      const url = 'http://app-dev.2sxc.org/showcase-references-angular/DesktopModules/2sxc/API/app/auto/api/References/GetImages';
-
-      // TODO: Dosen't work in production build, base href for api request is in correct set
-      // If problem is fixed replace code with:
-      // return this.data.api<Image[]>('References').get('GetImages', params);
-
-      return combineLatest(
-        this.context.moduleId$,
-        this.context.tabId$,
-      ).pipe(
-        switchMap(([moduleId, tabId]) => {
-
-          params.set('moduleId', `${moduleId}`);
-          params.set('tabId', `${tabId}`);
-
-          return this.http.get<Image[]>(url, {params});
-
-        }),
-      );
+      return this.data.api<Image[]>('References').get('GetImages', params);
     }
 }

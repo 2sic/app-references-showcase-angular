@@ -1,31 +1,23 @@
 
-<div class="row">
 
-  <div class="col-12 col-sm-6">
+<ng-container *ngIf="!!reference.PreviewImage && !hasImgError">
+  <img [src]="reference.PreviewImage + cropImgString" (error)="hasImgError = true" class="img-fluid">
+</ng-container>
 
-    <ng-container *ngIf="!!reference.PreviewImage && !hasImgError">
-      <img [src]="reference.PreviewImage + cropImgString" (error)="hasImgError = true" class="img-fluid">
-    </ng-container>
+<ng-container *ngIf="!reference.PreviewImage || hasImgError">
+  <div class="placeholder"></div>
+</ng-container>
 
-    <ng-container *ngIf="!reference.PreviewImage || hasImgError">
-      <div class="placeholder"></div>
-    </ng-container>
-
-  </div>
-
-  <div class="col-12 col-sm-6">
-    <div class="reference-text">
-      <span><strong>{{reference.Title}}</strong></span>
-      <br>
-      <span>
-        {{ reference.Description }}
-      </span>
-    </div>
-  </div>
-
+<div class="reference-text">
+  <span><strong>{{reference.Title}}</strong></span>
+  <br>
+  <span>
+    {{ reference.Description }} Test2
+  </span>
 </div>
 
-<a [routerLink]="['/reference', reference.UrlPath]" class="mb-5 btn btn-primary float-right">
+
+<a [routerLink]="['/reference', reference.UrlPath]" class="btn btn-primary">
   {{btnLabel}}
 </a>
 
