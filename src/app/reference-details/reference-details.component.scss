@@ -1,4 +1,4 @@
-
-.carousel {
-  margin-bottom: 20px;
-}
+$img-gap: 5px;
+a.first { display:block; margin-bottom:$img-gap; }
+.ref-images-small { display:grid; grid-gap:$img-gap; grid-template-columns:1fr 1fr 1fr; }
+a.small { display:block; }

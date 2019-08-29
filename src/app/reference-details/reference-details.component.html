@@ -1,9 +1,8 @@
 
-<div class="row">
-
-  <ng-container *ngIf="!!reference">
-    <div class="col-sm-12 col-md-6 order-2 order-sm-2 order-md-1">
-
+<div *ngIf="!loading" @fadeInOut>
+  <div class="row" *ngIf="!!reference" [sxc-toolbar]='{toolbar:{entityId:reference.Id}}'>
+    <div class="col-sm-12 col-md-7">
+      <h1>{{reference.Title}}</h1>
       <ng-container *ngIf="!!reference?.Description">
         <span [innerHTML]="reference?.Description"></span>
       </ng-container>
@@ -27,40 +26,28 @@
       </table>
 
     </div>
-  </ng-container>
 
-  <ng-container *ngIf="(images$ | async)?.length > 0">
-    <div class="col-sm-12 col-md-6 order-1 order-sm-1 order-md-2">
-      <div id="carouselControls" class="carousel slide" data-ride="carousel">
+    <div *ngIf="images$ | async as images" @fadeInOut class="ref-images col-sm-12 col-md-5">
+      <div *ngIf="images.length > 0">
+        
+        <a href="{{images[0].Url}}" data-fancybox="gallery" class="first">
+          <img [src]="images[0].Url + '?w=200&h=150&mode=crop'" class="d-block w-100">
+        </a>
 
-        <div class="carousel-inner">
-
-          <ng-container *ngFor="let img of images$ | async; first as first">
-            <div class="carousel-item" [ngClass]="{'active': first}">
-              <img [src]="img.Url" class="d-block w-100">
-            </div>
-          </ng-container>
-
+        <div class="ref-images-small">
+          <a *ngFor="let img of images | slice:1" href="{{img.Url}}" data-fancybox="gallery" class="small">
+            <img [src]="img.Url + '?w=100&h=100&mode=crop'" class="d-block w-100">
+          </a>
         </div>
-
-        <a class="carousel-control-prev" href="#carouselControls" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-
-        <a class="carousel-control-next" href="#carouselControls" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
 
       </div>
     </div>
-  </ng-container>
 
-  <ng-container *ngIf="!reference">
-    <p>Keine Reference für dieses Auswahl gefunden</p>
-  </ng-container>
+    <ng-container *ngIf="!reference">
+      <p>Keine Reference für dieses Auswahl gefunden</p>
+    </ng-container>
 
+  </div>
+
+  <button class="btn btn-primary" [routerLink]="['/category', 'all']">{{btnBack}}</button>
 </div>
-
-<button class="btn btn-primary" [routerLink]="['/category', 'all']">{{btnBack}}</button>

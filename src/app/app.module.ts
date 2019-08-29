@@ -1,7 +1,8 @@
-import { DnnInterceptor, RuntimeSettings } from '@2sic.com/dnn-sxc-angular';
+import { DnnInterceptor, RuntimeSettings, ContentManagerModule } from '@2sic.com/dnn-sxc-angular';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule, Provider } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { environment } from './../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,9 +18,10 @@ const providers: Provider[] = [
   DnnInterceptor,
 ];
 
+/*
 if (!environment.production) {
   providers.push({ provide: RuntimeSettings, useValue: DnnDevSettings });
-}
+}*/
 
 @NgModule({
   declarations: [
@@ -29,12 +31,14 @@ if (!environment.production) {
     ReferencesComponent,
     OverviewComponent,
     ReferenceItemComponent,
-    ReferenceDetailsComponent,
+    ReferenceDetailsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    ContentManagerModule
   ],
   providers,
   bootstrap: [AppComponent]

@@ -4,7 +4,7 @@ import { OverviewComponent } from './overview/overview.component';
 import { ReferenceDetailsComponent } from './reference-details/reference-details.component';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'category/all' },
+  { path: '', component: OverviewComponent },
   { path: 'category/:category', component: OverviewComponent },
   { path: 'reference/:reference', component: ReferenceDetailsComponent },
 ];

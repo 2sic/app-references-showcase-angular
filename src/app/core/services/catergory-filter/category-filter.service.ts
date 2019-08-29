@@ -28,7 +28,7 @@ export class CategoryFilterService {
       map(([category, references]) =>
         // if Id is null return all references
         !!category.Id
-        ? referencesByCategory(category, references)
+        ? this.referencesByCategory(category, references)
         : references
       ),
       shareReplay(),
@@ -38,12 +38,13 @@ export class CategoryFilterService {
   updateSelectedCategory(category: Category) {
     this.selectedCategorySubjet$.next(category);
   }
+
+  referencesByCategory(category: Category, references: Reference[]): Reference[] {
+    const filteredRefs: Reference[] = references.filter(ref => {
+      return ref.Category.some(cat => cat.Id === category.Id);
+    });
+  
+    return filteredRefs;
+  }
 }
 
-function referencesByCategory(category: Category, references: Reference[]): Reference[] {
-  const filteredRefs: Reference[] = references.filter(ref => {
-    return ref.Category.some(cat => cat.Id === category.Id);
-  });
-
-  return filteredRefs;
-}

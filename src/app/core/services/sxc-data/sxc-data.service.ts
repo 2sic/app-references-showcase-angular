@@ -14,14 +14,18 @@ export class SxcDataService {
     categories$: Observable<Category[]>;
     references$: Observable<Reference[]>;
     resources$: Observable<Resources>;
+    settings$: Observable<any>;
 
     constructor(
       private http: HttpClient,
       private context: Context,
       private data: Data
     ) {
+      this.settings$ = this.data.query$<any>('All References and Settings').pipe(shareReplay());
+
       this.references$ = this.data.content<Reference>('Reference').get().pipe(shareReplay());
       this.categories$ = this.data.content<Category>('Category').get().pipe(shareReplay());
+      
       this.resources$ = this.data.content<Resources>('Resources').get().pipe(
         map((resources: Resources[]) => resources[0]),
         shareReplay(),

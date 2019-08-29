@@ -1,23 +1,24 @@
 
+<div [sxc-toolbar]='{toolbar:{entityId:reference.Id}}'>
 
-<ng-container *ngIf="!!reference.PreviewImage && !hasImgError">
-  <img [src]="reference.PreviewImage + cropImgString" (error)="hasImgError = true" class="img-fluid">
-</ng-container>
+  <ng-container *ngIf="!!reference.PreviewImage && !hasImgError">
+    <img [src]="reference.PreviewImage + cropImgString" (error)="hasImgError = true" class="img-fluid">
+  </ng-container>
 
-<ng-container *ngIf="!reference.PreviewImage || hasImgError">
-  <div class="placeholder"></div>
-</ng-container>
+  <ng-container *ngIf="!reference.PreviewImage || hasImgError">
+    <div class="placeholder"></div>
+  </ng-container>
 
-<div class="reference-text">
-  <span><strong>{{reference.Title}}</strong></span>
-  <br>
-  <span>
-    {{ reference.Description }} Test2
-  </span>
+  <div class="reference-text">
+    <span><strong>{{reference.Title}}</strong></span>
+    <br>
+    <span>
+      {{ reference.Description }} Test2
+    </span>
+  </div>
+
+
+  <a [routerLink]="['/reference', reference.UrlPath]" class="btn btn-primary">
+    {{btnLabel}} <i class="fas fa-long-arrow-alt-right"></i>
+  </a>
 </div>
-
-
-<a [routerLink]="['/reference', reference.UrlPath]" class="btn btn-primary">
-  {{btnLabel}}
-</a>
-
