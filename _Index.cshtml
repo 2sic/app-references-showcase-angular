@@ -1,13 +1,28 @@
-<base href="@Dnn.Tab.FullUrl">
-<app-root></app-root>
+
+@{
+	Edit.Enable(autoToolbar: false);
+	
+	var local = true;
+	var path = App.Path + "/dist/showcase-references-angular";
+	if(local) {
+		path = "http://localhost:4200";
+	}
+}
 
 <!-- Include Fancybox directly in here because a recent version is not available on NPM -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
 <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 
-<script type="text/javascript" src="@App.Path/dist/showcase-references-angular/runtime.js"></script>
-<script type="text/javascript" src="@App.Path/dist/showcase-references-angular/es2015-polyfills.js" nomodule></script>
-<script type="text/javascript" src="@App.Path/dist/showcase-references-angular/polyfills.js"></script>
-<script type="text/javascript" src="@App.Path/dist/showcase-references-angular/styles.js"></script>
-<script type="text/javascript" src="@App.Path/dist/showcase-references-angular/vendor.js"></script>
-<script type="text/javascript" src="@App.Path/dist/showcase-references-angular/main.js"></script>
+
+<base href="@Dnn.Tab.FullUrl">
+<app-root></app-root>
+<script src="/desktopmodules/tosic_sexycontent/js/2sxc.api.min.js"></script>
+<script type="text/javascript" src="@path/runtime.js"></script>
+<script type="text/javascript" src="@path/es2015-polyfills.js" nomodule></script>
+<script type="text/javascript" src="@path/polyfills.js"></script>
+<script type="text/javascript" src="@path/styles.js"></script>
+@if(local) {
+	<script type="text/javascript" src="@path/scripts.js"></script>
+}
+<script type="text/javascript" src="@path/vendor.js"></script>
+<script type="text/javascript" src="@path/main.js"></script>
