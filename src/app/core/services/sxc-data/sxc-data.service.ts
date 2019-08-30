@@ -21,7 +21,7 @@ export class SxcDataService {
       private context: Context,
       private data: Data
     ) {
-      this.settings$ = this.data.query$<any>('All References and Settings').pipe(shareReplay());
+      this.settings$ = this.data.query$<any>('Settings').pipe(shareReplay());
 
       this.references$ = this.data.content<Reference>('Reference').get().pipe(map(v => v.sort((a,b) => a.CreateDate > b.CreateDate ? -1 : 1))).pipe(shareReplay());
       this.categories$ = this.data.content<Category>('Category').get().pipe(shareReplay());
