@@ -11,35 +11,39 @@ import { Reference } from 'src/app/shared/interfaces/references.interfaces';
 export class ReferenceItemComponent {
 
   btnLabel: string;
+  referencesPage: string;
+  /**
+   * Defines if the module is placed on a page wich only shows one category
+   * which means the links should go to the references page itself.
+   */
+  isCategoryPage = false;
 
   hasImgError = false;
   cropImgString = '?w=496&h=370&mode=crop&scale=both';
 
-  private localReference: Reference;
+  @Input()
+  reference: Reference;
 
   constructor(
     sxcData: SxcDataService,
   ) {
     sxcData.resources$.pipe(
-      tap(resources => this.btnLabel = resources.DetailsBtnLabel),
+      tap(resources => {
+        this.btnLabel = resources.DetailsBtnLabel;
+        this.referencesPage = resources.ReferencesPage;
+      }),
     ).subscribe();
+    sxcData.settings$.subscribe((s) => { this.isCategoryPage = s.Default[0].CategoryFilter.length > 0 });
   }
 
-  @Input()
-  set reference(ref: Reference) {
-
+  get croppedDescription() {
     const charLimit = 40;
-    this.localReference = ref;
-    this.localReference.Description = this.parseHTMLToString(ref.Description);
+    let description = this.parseHTMLToString(this.reference.Description);
 
-    if (this.localReference.Description.length > charLimit) {
-      const croped = this.localReference.Description.slice(0, charLimit);
-      this.localReference.Description = croped + '...';
-    }
-  }
+    if (description.length > charLimit)
+      description = description.slice(0, charLimit) + '...';
 
-  get reference() {
-    return this.localReference;
+    return description;
   }
 
   private parseHTMLToString(htmlStr: string) {

@@ -1,5 +1,5 @@
 
-<div [sxc-toolbar]='{toolbar:{entityId:reference.Id}}'>
+<div [sxc-toolbar]='{toolbar:{action:"edit",entityId:reference.Id}}'>
 
   <ng-container *ngIf="!!reference.PreviewImage && !hasImgError">
     <img [src]="reference.PreviewImage + cropImgString" (error)="hasImgError = true" class="img-fluid">
@@ -13,12 +13,18 @@
     <span><strong>{{reference.Title}}</strong></span>
     <br>
     <span>
-      {{ reference.Description }} Test2
+      {{ croppedDescription }}
     </span>
   </div>
 
-
-  <a [routerLink]="['/reference', reference.UrlPath]" class="btn btn-primary">
-    {{btnLabel}} <i class="fas fa-long-arrow-alt-right"></i>
-  </a>
+  <ng-container *ngIf="!isCategoryPage">
+    <a [routerLink]="['/reference', reference.UrlPath]">
+      {{btnLabel}} <i class="fas fa-long-arrow-alt-right"></i>
+    </a>
+  </ng-container>
+  <ng-container *ngIf="isCategoryPage">
+    <a [href]="referencesPage + '/reference/' + reference.UrlPath">
+      {{btnLabel}} <i class="fas fa-long-arrow-alt-right"></i>
+    </a>
+  </ng-container>
 </div>

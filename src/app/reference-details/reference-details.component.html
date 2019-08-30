@@ -3,27 +3,17 @@
   <div class="row" *ngIf="!!reference" [sxc-toolbar]='{toolbar:{entityId:reference.Id}}'>
     <div class="col-sm-12 col-md-7">
       <h1>{{reference.Title}}</h1>
-      <ng-container *ngIf="!!reference?.Description">
-        <span [innerHTML]="reference?.Description"></span>
-      </ng-container>
+      <div *ngIf="!!reference?.Description" [innerHTML]="reference?.Description"></div>
 
-      <table class="table table-striped">
-        <tbody>
+      <div *ngIf="!!reference?.Services">
+        <h3>{{servicesLabel}}</h3>
+        <div [innerHTML]="reference?.Services"></div>
+      </div>
 
-          <tr *ngIf="!!reference?.Services">
-            <th scope="row">{{servicesLabel}}</th>
-            <td>{{reference?.Services}}</td>
-          </tr>
-
-          <tr *ngIf="!!reference?.Links">
-            <th scope="row">{{linksLabel}}</th>
-            <td>
-              <span [innerHTML]="reference?.Links"></span>
-            </td>
-          </tr>
-
-        </tbody>
-      </table>
+      <div *ngIf="!!reference?.Links">
+        <h3>{{linksLabel}}</h3>
+        <div [innerHTML]="reference?.Links"></div>
+      </div>
 
     </div>
 

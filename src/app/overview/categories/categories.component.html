@@ -1,10 +1,5 @@
-
-<div class="category-buttons">
-
+<div class="category-buttons" [sxc-toolbar]='{toolbar:{action:"new",contentType:"Category"},settings:{hover:"left"}}'>
   <ng-container *ngFor="let category of categories$ | async">
-
     <app-category-button [category]="category"></app-category-button>
-
   </ng-container>
-
 </div>

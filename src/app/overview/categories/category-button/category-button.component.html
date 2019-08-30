@@ -5,6 +5,7 @@
   [routerLink]="[routerParam, category?.UrlPath]"
   [routerLinkActive]="['active']"
   (click)="select()"
+  [sxc-toolbar]='{toolbar:{action:"edit",entityId:category.Id}}'
 >
   {{category.Name}}
 </button>

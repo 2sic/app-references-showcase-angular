@@ -1,6 +1,6 @@
 
-<div class="row">
-
+<div class="row" [sxc-toolbar]='{toolbar:{action:"new",contentType:"Reference",prefill:{CreateDate:dateNow}},settings:{hover:"left"}}'>
+  
   <ng-container *ngFor="let reference of references$ | async">
 
     <div class="col-sm-12 col-lg-4">

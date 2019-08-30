@@ -7,4 +7,5 @@ export interface Resources {
   ServicesLabel: string;
   LinksLabel: string;
   BackBtnLabel: string;
+  ReferencesPage: string;
 }

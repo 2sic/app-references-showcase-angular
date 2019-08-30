@@ -23,7 +23,7 @@ export class SxcDataService {
     ) {
       this.settings$ = this.data.query$<any>('All References and Settings').pipe(shareReplay());
 
-      this.references$ = this.data.content<Reference>('Reference').get().pipe(shareReplay());
+      this.references$ = this.data.content<Reference>('Reference').get().pipe(map(v => v.sort((a,b) => a.CreateDate > b.CreateDate ? -1 : 1))).pipe(shareReplay());
       this.categories$ = this.data.content<Category>('Category').get().pipe(shareReplay());
       
       this.resources$ = this.data.content<Resources>('Resources').get().pipe(

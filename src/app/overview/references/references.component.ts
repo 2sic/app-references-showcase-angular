@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { CategoryFilterService } from '../../core/services/catergory-filter/category-filter.service';
 import { Reference } from '../../shared/interfaces/references.interfaces';
 import { Category } from 'src/app/shared/interfaces/category.interfaces';
+import { takeWhile, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-references',
@@ -18,12 +19,16 @@ export class ReferencesComponent {
       this._catFilter.updateSelectedCategory(cat);;
   }
 
+  @Input()
+  settings: any;
+
   references$: Observable<Reference[]>;
 
   constructor(
     catFilter: CategoryFilterService
   ) {
     this._catFilter = catFilter;
-    this.references$ = catFilter.referencesBySelectedCategory$;
+    this.references$ = catFilter.referencesBySelectedCategory$
+      .pipe(map(a => this.settings.LimitCount ? a.slice(0, this.settings.LimitCount) : a));
   }
 }

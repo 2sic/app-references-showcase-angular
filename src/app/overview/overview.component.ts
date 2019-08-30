@@ -14,6 +14,7 @@ export class OverviewComponent {
   categoryFilter: any;
   resources$: Observable<Resources>;
   settings: any;
+  dateNow = new Date();
 
   constructor(
     sxcData: SxcDataService,

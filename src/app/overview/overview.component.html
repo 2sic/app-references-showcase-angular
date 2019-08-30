@@ -1,6 +1,8 @@
-<div *ngIf="!!settings" [attr.sxc-toolbar]='{"toolbar":{"sortOrder":0,"useModuleList":true,"isPublished":true},"settings":null} | json'>
-    <h1>{{settings.Title}}</h1>
-</div>
+<div [sxc-toolbar]='{toolbar:{sortOrder:0,useModuleList:true,isPublished:true}}'>
+    <div *ngIf="!!settings">
+        <h1 *ngIf="!settings.HideTitle">{{settings.Title}}</h1>
+    </div>
 
-<app-categories *ngIf="!categoryFilter"></app-categories>
-<app-references [categoryFilter]="categoryFilter"></app-references>
+    <app-categories *ngIf="!categoryFilter"></app-categories>
+    <app-references *ngIf="!!settings" [categoryFilter]="categoryFilter" [settings]="settings"></app-references>
+</div>
